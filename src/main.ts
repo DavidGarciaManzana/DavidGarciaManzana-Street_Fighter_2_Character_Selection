@@ -68,39 +68,81 @@ type Move = 'down' | 'up' | 'right' | 'left'
 
 
 let streetFighterSelection = (fighters: string[][], position: number[], moves: Move[]) => {
+    let hoverChar: string[] = [];
     moves.forEach((move) => {
         switch (move) {
             case 'down':
-                if (position[1] == 0) {
-                    position[1] -= 1
-                }
-                break;
-            case 'up':
-                if (position[1] == -1) {
-                    position[1] += 1
-                }
-                break;
-            case 'right':
-                if (position[0] == 5) {
-                    position[0] = 0
-                } else {
+                if (position[0] == 0) {
                     position[0] += 1
                 }
                 break;
-            case 'left':
-                if (position[0] == 0) {
-                    position[0] = 5
-                } else {
+            case 'up':
+                if (position[0] == 1) {
                     position[0] -= 1
+                }
+                break;
+            case 'right':
+                if (position[1] == 5) {
+                    position[1] = 0
+                } else {
+                    position[1] += 1
+                }
+                break;
+            case 'left':
+                if (position[1] == 0) {
+                    position[1] = 5
+                } else {
+                    position[1] -= 1
                 }
                 break
         }
+        //arriba
+        if (position[0] == 0) {
+            if (position[1] == 0) {
+                hoverChar.push(fighters[0][0])
+            } else if (position[1] == 1) {
+                hoverChar.push(fighters[0][1])
+            } else if (position[1] == 2) {
+                hoverChar.push(fighters[0][2])
+            }
+            else if (position[1] == 3) {
+                hoverChar.push(fighters[0][3])
+            } else if (position[1] == 4) {
+                hoverChar.push(fighters[0][4])
+            } else if (position[1] == 5) {
+                hoverChar.push(fighters[0][5])
+            }
+
+        }
+        //abajo
+        else {
+            if (position[1] == 0) {
+                hoverChar.push(fighters[1][0])
+            } else if (position[1] == 1) {
+                hoverChar.push(fighters[1][1])
+            }
+            else if (position[1] == 2) {
+                hoverChar.push(fighters[1][2])
+            }
+            else if (position[1] == 3) {
+                hoverChar.push(fighters[1][3])
+            }
+            else if (position[1] == 4) {
+                hoverChar.push(fighters[1][4])
+            } else if (position[1] == 5) {
+                hoverChar.push(fighters[1][5])
+            }
+        }
+        hoverChar.push()
+
     })
-    console.log(position)
+    console.log(hoverChar)
+    return hoverChar
+    
 
 }
 
-
+// moves = ["up","left","down","right","up","left","down","right"];
 
 let fighters: string[][] = [
     ["Ryu", "E.Honda", "Blanka", "Guile", "Balrog", "Vega"],
@@ -110,13 +152,23 @@ let opts: Move[] = ["up", "down", "right", "left"]
 let moves: Move[] = []
 
 
-streetFighterSelection(fighters, [0, 0], moves)//,[];
+// streetFighterSelection(fighters, [0, 0], moves)//,[];
 
-moves = ['up', 'left', 'right', 'left', 'left'];
-streetFighterSelection(fighters, [0, 0], moves)//,['Ryu', 'Vega', 'Ryu', 'Vega', 'Balrog']);
-
-
+// moves = ['up', 'left', 'right', 'left', 'left'];
+// streetFighterSelection(fighters, [0, 0], moves)//,['Ryu', 'Vega', 'Ryu', 'Vega', 'Balrog']);
 
 
-moves = ["left", "left", "left", "left", "left", "left", "left", "left"];
-streetFighterSelection(fighters, [0, 0], moves)//,['Vega', 'Balrog', 'Guile', 'Blanka', 'E.Honda', 'Ryu', 'Vega', 'Balrog'];
+
+
+// moves = ["left", "left", "left", "left", "left", "left", "left", "left"];
+// streetFighterSelection(fighters, [0, 0], moves)//,['Vega', 'Balrog', 'Guile', 'Blanka', 'E.Honda', 'Ryu', 'Vega', 'Balrog'];
+
+
+// moves = ['up', 'down', 'right', 'up', 'left'];
+// streetFighterSelection(fighters, [0, 0], moves)//,[ 'Ryu', 'Ken', 'Chun Li', 'E.Honda', 'Ryu' ]);
+
+// moves = ['up', 'up','up'];
+// streetFighterSelection(fighters, [0, 3], moves)//,[ 'Ryu', 'Ken', 'Chun Li', 'E.Honda', 'Ryu' ]);
+
+moves = ["up","left","down","right","up","left","down","right"];
+streetFighterSelection(fighters, [0,0], moves)//,['Ryu', 'Vega', 'M.Bison', 'Ken', 'Ryu', 'Vega', 'M.Bison', 'Ken'];
