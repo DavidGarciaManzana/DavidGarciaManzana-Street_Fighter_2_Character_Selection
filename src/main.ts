@@ -66,27 +66,57 @@
 
 type Move = 'down' | 'up' | 'right' | 'left'
 
-export function streetFighterSelection(fighters: string[][], position: number[], moves: Move[]) {
-    // Your code here!
+
+let streetFighterSelection = (fighters: string[][], position: number[], moves: Move[]) => {
+    moves.forEach((move) => {
+        switch (move) {
+            case 'down':
+                if (position[1] == 0) {
+                    position[1] -= 1
+                }
+                break;
+            case 'up':
+                if (position[1] == -1) {
+                    position[1] += 1
+                }
+                break;
+            case 'right':
+                if (position[0] == 5) {
+                    position[0] = 0
+                } else {
+                    position[0] += 1
+                }
+                break;
+            case 'left':
+                if (position[0] == 0) {
+                    position[0] = 5
+                } else {
+                    position[0] -= 1
+                }
+                break
+        }
+    })
+    console.log(position)
+
 }
 
 
 
-// let fighters: string[][] = [
-//     ["Ryu", "E.Honda", "Blanka", "Guile", "Balrog", "Vega"],
-//     ["Ken", "Chun Li", "Zangief", "Dhalsim", "Sagat", "M.Bison"]
-// ];
-// let opts: Move[] = ["up", "down", "right", "left"]
-// let moves: Move[] = []
+let fighters: string[][] = [
+    ["Ryu", "E.Honda", "Blanka", "Guile", "Balrog", "Vega"],
+    ["Ken", "Chun Li", "Zangief", "Dhalsim", "Sagat", "M.Bison"]
+];
+let opts: Move[] = ["up", "down", "right", "left"]
+let moves: Move[] = []
 
 
-// streetFighterSelection(fighters, [0, 0], moves)//,[];
+streetFighterSelection(fighters, [0, 0], moves)//,[];
 
-// moves = ['up', 'left', 'right', 'left', 'left'];
-// streetFighterSelection(fighters, [0, 0], moves)//,['Ryu', 'Vega', 'Ryu', 'Vega', 'Balrog']);
-
-
+moves = ['up', 'left', 'right', 'left', 'left'];
+streetFighterSelection(fighters, [0, 0], moves)//,['Ryu', 'Vega', 'Ryu', 'Vega', 'Balrog']);
 
 
-// moves = ["left", "left", "left", "left", "left", "left", "left", "left"];
-// streetFighterSelection(fighters, [0, 0], moves)//,['Vega', 'Balrog', 'Guile', 'Blanka', 'E.Honda', 'Ryu', 'Vega', 'Balrog'];
+
+
+moves = ["left", "left", "left", "left", "left", "left", "left", "left"];
+streetFighterSelection(fighters, [0, 0], moves)//,['Vega', 'Balrog', 'Guile', 'Blanka', 'E.Honda', 'Ryu', 'Vega', 'Balrog'];
